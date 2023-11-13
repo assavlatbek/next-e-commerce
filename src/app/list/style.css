@@ -1,0 +1,120 @@
+.all-products-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.all-products-row .home-card {
+  flex: 1 !important;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  margin: 10px;
+  border: 1px solid #828282;
+  border-radius: 10px;
+}
+
+.all-products-row .product-card-image-container img {
+  object-fit: cover;
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+  height: 200px;
+}
+
+.all-products-row .home-card .card-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.all-products-row .home-card-body {
+  padding: 10px;
+}
+
+.all-products-row .product-name {
+  text-align: center;
+  font-style: 17px !important;
+}
+
+.all-products-row .home-card hr {
+  width: 100%;
+  border: 1px solid #b9b9b9;
+  margin: 7px 0;
+}
+
+.all-products-row .add-button {
+  transition: 0.3s all;
+  width: 100%;
+  color: #000000;
+  word-break: keep-all !important;
+  background: transparent;
+  padding: 15px 30px;
+  font-size: 17px;
+  font-weight: 500;
+  border-radius: 0 0 10px 10px;
+  border: 1px solid #b9b9b9;
+  cursor: pointer;
+}
+
+.all-products-row .add-button:hover {
+  transition: 0.3s all;
+  background: #33ff00;
+  color: #fff !important;
+  border: none;
+}
+
+.all-products-row .add-button:hover .text-green {
+  transition: 0.3s all;
+  color: #fff;
+}
+
+.all-products-row .text-green {
+  color: #33ff00;
+}
+.all-products-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.all-products-header h1 {
+  font-size: 32px;
+}
+
+.all-products-filter {
+  padding: 10px;
+  font-size: 18px;
+  border-radius: 10px;
+  outline: none;
+  border: 1px solid #dedede;
+}
+.all-products-filter::-webkit-scrollbar {
+  width: 1px;
+}
+
+.all-products-filter ::-webkit-scrollbar-thumb {
+  background-color: #373737;
+}
+
+.all-products-filter ::-webkit-scrollbar-track {
+  background-color: #444444;
+}
+.all-products-search input {
+  font-size: 18px;
+  margin-top: 10px;
+  border-radius: 10px;
+  width: 100%;
+  padding: 10px;
+  outline: none;
+  border: 1px solid #dddd;
+}
+
+@media (max-width: 1180px) {
+  .all-products-row .home-card .card-action {
+    display: block !important;
+  }
+  .all-products-row .add-button,
+  .all-products-row .favorite-button {
+    width: 100%;
+    margin: 5px;
+  }
+}

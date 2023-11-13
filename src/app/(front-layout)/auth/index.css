@@ -1,0 +1,117 @@
+.auth-section * {
+  transition: 0.3s all;
+}
+
+.auth-section {
+  transition: 0.3s all;
+  width: 100%;
+  min-height: calc(100vh - 69px);
+  padding: 40px 0;
+  background: rgb(17, 125, 217);
+  background: linear-gradient(
+    306deg,
+    rgba(17, 125, 217, 1) 0%,
+    rgba(194, 8, 235, 1) 82%
+  );
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sps {
+  margin: 10px 0;
+}
+
+.auth-container {
+  background: #ffffff49;
+  backdrop-filter: blur(2px);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding: 30px;
+  min-width: auto;
+  border-radius: 50px;
+  min-width: 350px;
+}
+
+.auth-container hr {
+  border: 1px solid #dadada;
+  margin-bottom: 15px;
+  margin-top: 5px;
+}
+
+.auth-name {
+  text-align: center;
+  margin: 10px 0;
+  font-size: 32px;
+  color: #fff;
+  font-weight: 600;
+}
+
+.required-txt {
+  color: red;
+}
+
+.auth-input {
+  transition: 0.4s all;
+  width: 100%;
+  display: block;
+  padding: 15px 12px;
+  margin-top: 5px;
+  font-size: 15px;
+  background: #00000028;
+  outline: none;
+  font-weight: 500;
+  letter-spacing: 2px;
+  border: none;
+  border-radius: 0;
+  border-bottom: 2px solid #dadada !important;
+  color: #fff;
+}
+
+.auth-input:focus {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-color: rgb(0, 123, 255) !important;
+  transform: scale(1.03);
+}
+
+.auth-input::placeholder {
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+.auth-signs {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15px 0;
+}
+
+.auth-signs a {
+  color: rgb(0, 26, 255);
+}
+
+.auth-signs p {
+  color: #dadada;
+}
+
+.auth-button {
+  transition: 0.3s all;
+  border: 1px solid #fff;
+  padding: 10px 30px;
+  font-size: 19px;
+  background: transparent;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.auth-button:hover {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  letter-spacing: 2px;
+}
+
+@media (max-width: 350px) {
+  .auth-container {
+    margin: 0 30px !important;
+  }
+}

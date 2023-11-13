@@ -1,0 +1,278 @@
+header {
+  transition: 0.5s all;
+  background: #0a0a0a;
+  z-index: 9999 !important;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  position: fixed;
+  color: #fff;
+  width: 100%;
+  padding: 20px 0 !important;
+}
+
+.header-sps {
+  height: 69px;
+}
+
+header nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header .logo h1 {
+  transition: 0.5s all;
+  cursor: pointer;
+  letter-spacing: 1.1px;
+}
+
+.logo a {
+  text-decoration: none;
+  color: #fff;
+}
+
+header .logo h1:hover {
+  letter-spacing: 3px;
+}
+
+header .navigation {
+  display: flex;
+  align-items: center;
+  column-gap: 30px;
+}
+
+header .navs {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.navigation a {
+  transition: 0.3s all;
+  border: 1px solid transparent;
+  text-decoration: none;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0 10px;
+  padding: 6px 20px;
+  line-height: 28px;
+}
+
+.navigation a:hover,
+.navigation .active:hover {
+  border: 1.2px solid #fff;
+  padding: 10px 20px;
+  text-align: center;
+  border-radius: 50px;
+  letter-spacing: 1.2px !important;
+}
+
+.navigation .active {
+  border: 1.2px solid #fff;
+  padding: 10px 20px;
+  text-align: center;
+  border-radius: 50px;
+  letter-spacing: 1.2px !important;
+}
+
+.menu {
+  transition: 0.3s all;
+  display: none;
+}
+
+.open {
+  transition: 0.6s all;
+  opacity: 0;
+  width: 0 !important;
+}
+
+.menu-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 99999;
+}
+
+.hiddin {
+  overflow-y: hidden;
+}
+
+/* Footer */
+
+.footer {
+  background-color: black;
+  color: #fefefe;
+  width: 100%;
+  padding: 1.5rem;
+}
+
+.footer .heading {
+  color: #fefefe;
+  text-transform: uppercase;
+  letter-spacing: 1.4px;
+  margin-bottom: 3rem;
+  padding-top: 2rem !important;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.footer .content {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.footer .content p {
+  margin-bottom: 1.3rem;
+}
+
+.footer .content a {
+  text-decoration: none;
+  color: #fefefe;
+}
+
+.footer .content a:hover {
+  border-bottom: 1px solid #971717;
+}
+
+.footer .content h4 {
+  margin-bottom: 1.3rem;
+  font-size: 19px;
+}
+
+footer {
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+footer hr {
+  margin: 2rem 0;
+}
+
+@media (max-width: 767px) {
+  .footer .content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    font-size: 14px;
+  }
+
+  .footer {
+    position: unset;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .footer .content,
+  .footer {
+    font-size: 14px;
+  }
+}
+
+@media (orientation: landscape) and (max-height: 500px) {
+  .footer {
+    position: unset;
+  }
+}
+
+@media (max-width: 800px) {
+  header {
+    transition: 0.3s all;
+    padding: 10px 0 !important;
+  }
+  header * {
+    transition: 0.3s all !important;
+  }
+  .menu {
+    transition: 0.5s all;
+    display: block;
+    z-index: 99999;
+  }
+
+  .menu img {
+    transition: 0.5s all;
+    filter: invert(100%);
+  }
+
+  .navigation {
+    display: none !important;
+  }
+
+  .navs {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .navigation.open {
+    overflow: hidden !important;
+    right: -100%;
+    animation: openModal 0.6s forwards;
+    opacity: 1;
+    position: fixed;
+    z-index: 99999;
+    width: 100% !important;
+    height: 100vh;
+    top: 0;
+    padding: 200px 0;
+    background: #000000;
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+  }
+  .hide {
+    right: -100%;
+    animation: hideModal 0.6s forwards;
+    opacity: 1;
+    position: fixed;
+    overflow: hidden !important;
+    z-index: 99999;
+    width: 100% !important;
+    height: 100vh;
+    top: 0;
+    padding: 0;
+    padding: 200px 0;
+    background: #181818;
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+  }
+  .open a,
+  .hide a {
+    margin: 10px 0;
+    display: block;
+    text-align: center;
+  }
+
+  .open .action {
+    margin-top: 20px;
+    display: block !important;
+  }
+}
+
+@media (max-width: 400px) {
+  .footer .content {
+    display: block;
+  }
+  .footer {
+    text-align: center;
+    font-size: 20px;
+  }
+}
+
+/* Keyframes */
+
+@keyframes openModal {
+  0% {
+    right: -100%;
+  }
+  100% {
+    right: 0;
+  }
+}
+@keyframes hideModal {
+  0% {
+    right: 0;
+  }
+  100% {
+    right: -100%;
+  }
+}

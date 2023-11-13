@@ -1,0 +1,47 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css");
+@import url("react-multi-carousel/lib/styles.css");
+@import url("react-toastify/dist/ReactToastify.css");
+
+:root {
+  --theme-color: rgb(117, 17, 217);
+}
+
+body::-webkit-scrollbar {
+  transition: 0.5s all;
+  -webkit-appearance: none;
+  width: 0;
+  top: 0;
+  right: 0;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+body::-webkit-scrollbar-track {
+  background: #ddd;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box !important;
+}
+
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.list-card-title {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.list-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

@@ -1,0 +1,125 @@
+.home-card {
+  flex: 1 !important;
+  margin: 10px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  border: 1px solid #828282;
+  border-radius: 10px;
+}
+
+.product-card-image-container img {
+  object-fit: cover;
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+  height: 200px;
+}
+
+.home-card .card-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.home-card-body {
+  padding: 10px;
+}
+
+.product-name {
+  text-align: center;
+  font-style: 17px !important;
+}
+
+.home-card hr {
+  width: 100%;
+  border: 1px solid #b9b9b9;
+  margin: 7px 0;
+}
+
+.add-button {
+  transition: 0.3s all;
+  width: 100%;
+  color: #000000;
+  word-break: keep-all !important;
+  background: transparent;
+  padding: 15px 30px;
+  font-size: 17px;
+  font-weight: 500;
+  border-radius: 0 0 10px 10px;
+  border: 1px solid #b9b9b9;
+  cursor: pointer;
+}
+
+.add-button:hover {
+  transition: 0.3s all;
+  background: #33ff00;
+  color: #fff !important;
+  border: none;
+}
+
+.add-button:hover .text-green {
+  transition: 0.3s all;
+  color: #fff;
+}
+
+.text-green {
+  color: #33ff00;
+}
+
+.hero-category-name {
+  margin: 7px 0;
+}
+
+.see-btn {
+  transition: 0.3s all;
+  color: rgb(255, 251, 0);
+  background: transparent;
+  padding: 15px 30px;
+  font-size: 19px;
+  letter-spacing: 1.2px;
+  font-weight: 500;
+  width: 100%;
+  border: 1px solid rgb(255, 251, 0);
+}
+
+.see-btn:hover {
+  background: rgb(255, 251, 0);
+  border: none;
+  color: #fff;
+}
+
+.categories {
+  text-align: center !important;
+  text-decoration: none;
+}
+
+.categories-image {
+  margin: 0 50px;
+  margin-bottom: 10px;
+}
+
+.categories img {
+  display: block;
+  width: 100%;
+  text-align: center !important;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.category-name {
+  color: #40ff00;
+  padding-bottom: 20px;
+  font-size: 19px;
+  letter-spacing: 1.3px;
+  text-transform: capitalize;
+}
+
+@media (max-width: 1180px) {
+  .home-card .card-action {
+    display: block !important;
+  }
+  .add-button,
+  .favorite-button {
+    width: 100%;
+    margin: 5px;
+  }
+}

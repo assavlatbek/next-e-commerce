@@ -124,6 +124,15 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
   }
+  .all-products-header {
+    display: block;
+  }
+  .all-products-filter {
+    width: 100%;
+  }
+  .all-products-header h1 {
+    margin-bottom: 10px;
+  }
 }
 
 @media (max-width: 800px) {

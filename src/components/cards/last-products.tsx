@@ -1,14 +1,18 @@
 "use client";
 
+import { useStore } from "@/store/cart-store";
 import LastProductsType from "@/types/last-products";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React from "react";
+import { toast } from "react-toastify";
 
 function formatPrice(price: number): string {
   return String(price ? price : 4000000).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 const LastProductCard = ({
+  _id,
   price,
   image,
   sold,
@@ -18,18 +22,35 @@ const LastProductCard = ({
 }: LastProductsType) => {
   const formattedPrice = formatPrice(price);
 
-  const buy = (event: React.MouseEvent<HTMLButtonElement>) => {
-    if (typeof event.currentTarget.textContent !== "number") {
-      event.currentTarget.textContent = "";
+  const navigate = useRouter();
+
+  const addToCart = useStore((state) => state.addToCart);
+  const increaseQuantity = useStore((state) => state.increaseQuantity);
+  const decreaseQuantity = useStore((state) => state.decreaseQuantity);
+  const removeFromCart = useStore((state) => state.removeFromCart);
+  const cartQuantity = useStore((state) => state.cart[_id]?.quantity || 0);
+
+  const handleAddToCart = () => {
+    if (localStorage.getItem("token"))
+      if (cartQuantity === 0) {
+        addToCart(_id, title, price);
+      } else {
+        increaseQuantity(_id);
+      }
+    else {
+      toast.error("Login requeired, You are redricting");
+      setTimeout(() => {
+        navigate.push("/auth/login");
+      }, 1000);
     }
-    event.currentTarget.innerHTML = `
-    
-    <span>-</span>
-    <span>${event.currentTarget.textContent + 1}</span>
-    <span onclick=${event.currentTarget.textContent + 2}>+</span>
+  };
 
+  const handleIncreaseQuantity = () => {
+    increaseQuantity(_id);
+  };
 
-    `;
+  const handleDecreaseQuantity = () => {
+    decreaseQuantity(_id);
   };
 
   return (
@@ -61,11 +82,29 @@ const LastProductCard = ({
             <span className="text-green">{quantity ? quantity : 0}</span>
           </p>
         </div>
+
+        <p>
+          <b>Price: </b> <span className="text-green">{formattedPrice}USZ</span>
+        </p>
       </div>
       <div className="card-action">
-        <button className="add-button" onClick={buy}>
-          Add to Cart - <span className="text-green">{formattedPrice}USZ</span>
-        </button>
+        {cartQuantity > 0 ? (
+          <>
+            <button className="add-by-button">
+              <span className="minus-button" onClick={handleDecreaseQuantity}>
+                -
+              </span>
+              <span>{cartQuantity}</span>
+              <span className="plus-button" onClick={handleIncreaseQuantity}>
+                +
+              </span>
+            </button>
+          </>
+        ) : (
+          <button className="add-button" onClick={handleAddToCart}>
+            Add to Cart - {formattedPrice}USZ
+          </button>
+        )}
       </div>
     </div>
   );

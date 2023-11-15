@@ -53,7 +53,7 @@
   transition: 0.3s all;
   background: #33ff00;
   color: #fff !important;
-  border: none;
+  border: 1px solid #b9b9b9 !important;
 }
 
 .add-button:hover .text-green {
@@ -111,6 +111,102 @@
   font-size: 19px;
   letter-spacing: 1.3px;
   text-transform: capitalize;
+}
+
+.add-by-button {
+  display: flex !important;
+  justify-content: space-between !important;
+  transition: 0.3s all !important;
+  width: 100% !important;
+  color: #000000 !important;
+  word-break: keep-all !important;
+  background: transparent !important;
+  font-size: 17px !important;
+  align-items: center;
+  border: 1px solid #b9b9b9;
+  font-weight: 500 !important;
+  border-radius: 0 0 10px 10px !important;
+  cursor: pointer !important;
+}
+
+.minus-button {
+  font-weight: bold;
+  width: 20%;
+  padding: 10px;
+  font-size: 25px;
+  background: red;
+  border-radius: 0 0 0 10px;
+  color: #fff;
+}
+
+.plus-button {
+  font-weight: bold;
+  width: 20%;
+  padding: 10px;
+  font-size: 25px;
+  border-radius: 0 0 10px 0;
+  background: greenyellow;
+  color: #fff;
+}
+
+.ordered-card {
+  transition: 0.4s all;
+  width: 100%;
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
+  background: #fffefe;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border: 1px solid #dedede;
+  margin-bottom: 10px;
+}
+.ordered-card:hover {
+  background: #dedede;
+}
+
+.ordered-card span,
+.ordered-card .ordered-card-action {
+  width: 25%;
+}
+
+.ordered-card-action {
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+}
+
+.ordered-card-action .plus {
+  background: rgb(71, 205, 50);
+  cursor: pointer;
+  user-select: none;
+  transition: 0.3s all;
+  padding: 10px;
+  font-size: 18px;
+  color: #fff;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  letter-spacing: 2px;
+}
+
+.ordered-card-action .minus {
+  background: rgb(255, 3, 3);
+  letter-spacing: 2px;
+  cursor: pointer;
+  user-select: none;
+  transition: 0.3s all;
+  padding: 10px;
+  font-size: 18px;
+  color: #fff;
+  border-radius: 5px;
+  border: 1px solid transparent;
+}
+
+.ordered-card-action button:hover {
+  background: #fff;
+  color: #000;
+  border: 1px solid #000;
 }
 
 @media (max-width: 1180px) {

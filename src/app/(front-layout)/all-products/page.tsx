@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import React from "react";
 import AllProductsList from "../../list/all-products-list";
+import Loader from "@/components/loader/Loader";
 
 export const metadata: Metadata = {
   title: "E-commerce | All Products",
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
 const AllProducts = () => {
   return (
     <section>
+      <Loader />
       <div className="container">
         <AllProductsList />
       </div>

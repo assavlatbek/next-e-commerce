@@ -43,7 +43,12 @@ function Header() {
                 : null
             ) ? (
               <>
-                <NavLink onClick={() => setMenuOpen(false)} href={"/orders"}>
+                <NavLink
+                  onClick={() => {
+                    window.location.href = "/orders";
+                  }}
+                  href={"/orders"}
+                >
                   Orders
                 </NavLink>
                 <NavLink

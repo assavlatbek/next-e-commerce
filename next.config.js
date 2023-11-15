@@ -8,6 +8,7 @@ const nextConfig = {
       "mobilecity-live.s3.ap-southeast-2.amazonaws.com",
       "images.remotePatterns",
       "images.pexels.com",
+      "media.tenor.com",
     ],
   },
 };

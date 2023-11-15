@@ -3,7 +3,6 @@ import "../globals.css";
 import Header from "./(layout)/Header";
 import Footer from "./(layout)/Footer";
 import { ToastContainer } from "react-toastify";
-
 const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({

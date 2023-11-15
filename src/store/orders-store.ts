@@ -41,13 +41,22 @@ const useOrdersStore = create<OrdersStore>((set) => ({
     }),
   removeFromCart: (productId) =>
     set((state) => {
+      const newQuantity = Math.max(
+        (state.data[productId]?.quantity || 0) - 1,
+        0
+      );
       const newData = {
         ...state.data,
         [productId]: {
           ...state.data[productId],
-          quantity: Math.max((state.data[productId]?.quantity || 0) - 1, 0),
+          quantity: newQuantity,
         },
       };
+
+      if (newQuantity === 0) {
+        delete newData[productId];
+      }
+
       setStorage(newData);
       return { data: newData };
     }),

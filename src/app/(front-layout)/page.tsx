@@ -1,9 +1,9 @@
-import AllProductsList from "@/app/list/all-categories";
 import { Metadata } from "next";
 import React from "react";
 import LastProductsList from "../list/last-products";
 import Link from "next/link";
 import AllCategoriesList from "@/app/list/all-categories";
+import Loader from "@/components/loader/Loader";
 
 export const metadata: Metadata = {
   title: "E-commerce | Home",
@@ -13,6 +13,7 @@ export const metadata: Metadata = {
 const Home = () => {
   return (
     <>
+      <Loader />
       <div className="container">
         <div className="list-row">
           <h1 className="list-card-title">Latest Products</h1>{" "}

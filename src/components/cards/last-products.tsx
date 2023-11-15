@@ -27,11 +27,10 @@ const LastProductCard = ({
   const addToCart = useStore((state) => state.addToCart);
   const increaseQuantity = useStore((state) => state.increaseQuantity);
   const decreaseQuantity = useStore((state) => state.decreaseQuantity);
-  const removeFromCart = useStore((state) => state.removeFromCart);
   const cartQuantity = useStore((state) => state.cart[_id]?.quantity || 0);
 
   const handleAddToCart = () => {
-    if (localStorage.getItem("token"))
+    if (window || localStorage.getItem("token"))
       if (cartQuantity === 0) {
         addToCart(_id, title, price);
       } else {

@@ -1,27 +1,24 @@
-"use client";
-
-import "./account.css";
-
-import { logout } from "@/utils";
 import React from "react";
+import AccountForm from "@/components/form/Account";
+import { Metadata } from "next";
 
-const page = () => {
+import "../auth/index.css";
+
+export const metadata: Metadata = {
+  title: "E-commerce | Account",
+  description: "E-commerce by Savlatbek",
+};
+
+const AccountPage = () => {
   return (
-    <div>
-      <br />
-      <center>
-        <h1>Account Page</h1>
-      </center>
-
-      <br />
-      <center>
-        <button className="logout-button" onClick={logout}>
-          logout
-        </button>
-      </center>
-      <br />
-    </div>
+    <section className="auth-section">
+      <div className="auth-container">
+        <h1 className="auth-name">Account</h1>
+        <hr />
+        <AccountForm />
+      </div>
+    </section>
   );
 };
 
-export default page;
+export default AccountPage;

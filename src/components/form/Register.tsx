@@ -2,7 +2,6 @@
 
 import request from "@/server";
 import useAuth from "@/store/auth";
-import Link from "next/link";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import InputMask from "react-input-mask";

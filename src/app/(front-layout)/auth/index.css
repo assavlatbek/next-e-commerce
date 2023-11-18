@@ -96,18 +96,44 @@
 
 .auth-button {
   transition: 0.3s all;
-  border: 1px solid #fff;
+  border: 1px solid rgb(255, 213, 0);
   padding: 10px 30px;
   font-size: 19px;
   background: transparent;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  color: #fff;
+  color: rgb(255, 213, 0);
   border-radius: 5px;
 }
 
 .auth-button:hover {
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  background: rgb(255, 213, 0);
+  color: #fff;
+  box-shadow: rgba(234, 255, 0, 0.35) 0px 5px 15px;
   letter-spacing: 2px;
+}
+
+.space-center {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logout-button {
+  transition: 0.3s all;
+  border: 1px solid #ff0000;
+  padding: 10px 30px;
+  font-size: 19px;
+  background: transparent;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  color: #ff0000;
+  border-radius: 5px;
+}
+
+.logout-button:hover {
+  letter-spacing: 2px;
+  background: #ff0000;
+  box-shadow: rgba(255, 0, 0, 0.35) 0px 5px 15px;
+  color: #fff;
 }
 
 @media (max-width: 350px) {

@@ -28,7 +28,13 @@ const FormLogin = () => {
       window?.localStorage?.setItem("token", accesstoken);
 
       setTimeout(() => {
-        window.location.href = "/";
+        if (user.role) {
+          window.location.href = "/admin";
+          window?.localStorage?.setItem("role", "admin");
+        } else {
+          window.location.href = "/";
+          window?.localStorage?.setItem("role", "user");
+        }
       }, 300);
     } catch (err) {
       toast.error("Username or Password incorrect!");

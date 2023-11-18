@@ -7,22 +7,25 @@ interface AuthState {
   setIsAuthenticated: (user: User) => void;
 }
 
-const userJson =
-  typeof window !== "undefined" ? window?.localStorage.getItem("user") : null;
+const userJson = window.localStorage.getItem("user");
 
 const user = userJson ? JSON.parse(userJson) : null;
 
-const useAuth = create<AuthState>()((set, get) => ({
-  isAuthenticated: Boolean(
-    typeof window !== "undefined"
-      ? window?.localStorage?.getItem("token")
-      : null
-  ),
-  user,
-  setIsAuthenticated: (user) => {
-    const { isAuthenticated } = get();
-    set({ isAuthenticated: !isAuthenticated, user });
-  },
-}));
+const useAuth = create<AuthState>()((set, get) => {
+  const userJson =
+    typeof window !== "undefined" ? window.localStorage.getItem("user") : null;
+  const user = userJson ? JSON.parse(userJson) : null;
+
+  return {
+    isAuthenticated: Boolean(
+      typeof window !== "undefined" && window.localStorage.getItem("token")
+    ),
+    user,
+    setIsAuthenticated: (user) => {
+      const { isAuthenticated } = get();
+      set({ isAuthenticated: !isAuthenticated, user });
+    },
+  };
+});
 
 export default useAuth;

@@ -1,8 +1,7 @@
-import Link from "next/link";
-import "../index.css";
-
 import { Metadata } from "next";
 import FormRegister from "@/components/form/Register";
+
+import "../index.css";
 
 export const metadata: Metadata = {
   title: "E-commerce | Register",

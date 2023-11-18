@@ -93,6 +93,7 @@ const AllproductsList = () => {
           }}
         />
       </div>
+      <br />
       <div className="all-products-row">
         {loading
           ? "Loading..."
@@ -102,6 +103,7 @@ const AllproductsList = () => {
               <AllProductsCard key={product._id} {...product} />
             ))}
       </div>
+      <br />
       <div
         style={{
           textAlign: "center",
@@ -118,6 +120,7 @@ const AllproductsList = () => {
           />
         ) : null}
       </div>
+      <br />
     </>
   );
 };

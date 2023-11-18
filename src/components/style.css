@@ -14,6 +14,21 @@
   height: 200px;
 }
 
+.favorite-button {
+  transition: 0.3s all;
+  width: 100%;
+  padding: 10px 20px;
+  font-size: 19px;
+  border: none;
+  background: rgb(47, 255, 0);
+  color: #fff;
+}
+
+.favorite-button.favorited {
+  transition: 0.3s all;
+  background: rgb(255, 0, 0);
+}
+
 .home-card .card-row {
   display: flex;
   justify-content: space-between;

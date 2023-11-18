@@ -1,6 +1,7 @@
 "use client";
 
 import { useStore } from "@/store/cart-store";
+import { useFavouritesStore } from "@/store/favourites";
 import LastProductsType from "@/types/last-products";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -28,6 +29,38 @@ const LastProductCard = ({
   const increaseQuantity = useStore((state) => state.increaseQuantity);
   const decreaseQuantity = useStore((state) => state.decreaseQuantity);
   const cartQuantity = useStore((state) => state.cart[_id]?.quantity || 0);
+
+  const toggleFavorite = useFavouritesStore((state) => state.toggleFavorite);
+  const isFavorite = useFavouritesStore((state) =>
+    state.favorites.some((p) => p._id === _id)
+  );
+
+  const handleToggleFavorite = () => {
+    toggleFavorite({
+      _id,
+      price,
+      image,
+      sold,
+      quantity,
+      description,
+      title,
+      checked: false,
+      category: {
+        _id: "",
+        name: "",
+        image: {
+          public_id: "",
+          url: "",
+        },
+        createdAt: "",
+        updatedAt: "",
+        __v: 0,
+      },
+      createdAt: "",
+      updatedAt: "",
+      __v: 0,
+    });
+  };
 
   const handleAddToCart = () => {
     if (window || localStorage.getItem("token"))

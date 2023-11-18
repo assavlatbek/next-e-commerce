@@ -1,6 +1,7 @@
 "use client";
 import "../style.css";
 import { useStore } from "@/store/cart-store";
+import { useFavouritesStore } from "@/store/favourites";
 import { AllProductsType } from "@/types/all-products";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -26,8 +27,39 @@ const AllProductsCard = ({
   const addToCart = useStore((state) => state.addToCart);
   const increaseQuantity = useStore((state) => state.increaseQuantity);
   const decreaseQuantity = useStore((state) => state.decreaseQuantity);
-  const removeFromCart = useStore((state) => state.removeFromCart);
   const cartQuantity = useStore((state) => state.cart[_id]?.quantity || 0);
+
+  const toggleFavorite = useFavouritesStore((state) => state.toggleFavorite);
+  const isFavorite = useFavouritesStore((state) =>
+    state.favorites.some((p) => p._id === _id)
+  );
+
+  const handleToggleFavorite = () => {
+    toggleFavorite({
+      _id,
+      price,
+      image,
+      sold,
+      quantity,
+      description,
+      title,
+      checked: false,
+      category: {
+        _id: "",
+        name: "",
+        image: {
+          public_id: "",
+          url: "",
+        },
+        createdAt: "",
+        updatedAt: "",
+        __v: 0,
+      },
+      createdAt: "",
+      updatedAt: "",
+      __v: 0,
+    });
+  };
 
   const handleAddToCart = () => {
     if (localStorage.getItem("token"))
@@ -50,10 +82,6 @@ const AllProductsCard = ({
 
   const handleDecreaseQuantity = () => {
     decreaseQuantity(_id);
-  };
-
-  const handleRemoveFromCart = () => {
-    removeFromCart(_id);
   };
 
   return (
@@ -89,6 +117,12 @@ const AllProductsCard = ({
           <b>Price: </b> <span className="text-green">{formattedPrice}USZ</span>
         </p>
       </div>
+      <button
+        className={`favorite-button ${isFavorite ? "favorited" : ""}`}
+        onClick={handleToggleFavorite}
+      >
+        {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
+      </button>
       <div className="card-action">
         {cartQuantity > 0 ? (
           <>

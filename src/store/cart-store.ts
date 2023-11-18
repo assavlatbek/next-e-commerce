@@ -15,18 +15,17 @@ interface CartState {
   decreaseQuantity: (id: string) => void;
 }
 
-// Helper function to check if we are on the client side
 const isClient = typeof window !== "undefined";
 
-// Helper function to get data from localStorage on the client side
 const getClientStorage = () => {
-  return isClient ? JSON.parse(localStorage.getItem("cart") || "{}") : {};
+  return isClient
+    ? JSON.parse(window?.localStorage.getItem("cart") || "{}")
+    : {};
 };
 
-// Helper function to set data to localStorage on the client side
 const setStorage = (data: Record<string, CartItem>) => {
   if (isClient) {
-    localStorage.setItem("cart", JSON.stringify(data));
+    window?.localStorage.setItem("cart", JSON.stringify(data));
   }
 };
 

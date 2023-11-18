@@ -35,8 +35,8 @@ interface Store {
 
 export const useFavouritesStore = create<Store>((set: SetState<Store>) => {
   const initialFavorites: Product[] =
-    typeof window !== "undefined" && localStorage.getItem("favorites")
-      ? JSON.parse(localStorage.getItem("favorites") || "[]")
+    typeof window !== "undefined" && window?.localStorage.getItem("favorites")
+      ? JSON.parse(window?.localStorage.getItem("favorites") || "[]")
       : [];
 
   return {
@@ -49,11 +49,21 @@ export const useFavouritesStore = create<Store>((set: SetState<Store>) => {
           const updatedFavorites = state.favorites.filter(
             (p) => p._id !== product._id
           );
-          localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+          typeof window !== "undefined"
+            ? window?.localStorage.setItem(
+                "favorites",
+                JSON.stringify(updatedFavorites)
+              )
+            : null;
           return { favorites: updatedFavorites };
         } else if (typeof window !== "undefined") {
           const updatedFavorites = [...state.favorites, product];
-          localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+          typeof window !== "undefined"
+            ? window?.localStorage.setItem(
+                "favorites",
+                JSON.stringify(updatedFavorites)
+              )
+            : null;
           return { favorites: updatedFavorites };
         }
 

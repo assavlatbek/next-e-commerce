@@ -8,18 +8,18 @@ interface AuthState {
 }
 
 const userJson =
-  typeof window !== "undefined" ? window.localStorage.getItem("user") : null;
+  typeof window !== "undefined" ? window?.localStorage.getItem("user") : null;
 
 const user = userJson ? JSON.parse(userJson) : null;
 
 const useAuth = create<AuthState>()((set, get) => {
   const userJson =
-    typeof window !== "undefined" ? window.localStorage.getItem("user") : null;
+    typeof window !== "undefined" ? window?.localStorage.getItem("user") : null;
   const user = userJson ? JSON.parse(userJson) : null;
 
   return {
     isAuthenticated: Boolean(
-      typeof window !== "undefined" && window.localStorage.getItem("token")
+      typeof window !== "undefined" && window?.localStorage.getItem("token")
     ),
     user,
     setIsAuthenticated: (user) => {

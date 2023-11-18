@@ -16,12 +16,14 @@ interface OrdersStore {
 const isClient = typeof window !== "undefined";
 
 const getClientStorage = () => {
-  return isClient ? JSON.parse(localStorage.getItem("cart") || "{}") : {};
+  return isClient
+    ? JSON.parse(window?.localStorage.getItem("cart") || "{}")
+    : {};
 };
 
 const setStorage = (data: Record<string, Product>) => {
   if (isClient) {
-    localStorage.setItem("cart", JSON.stringify(data));
+    window?.localStorage.setItem("cart", JSON.stringify(data));
   }
 };
 

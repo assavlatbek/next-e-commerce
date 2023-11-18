@@ -2,7 +2,13 @@ import axios from "axios";
 
 const request = axios.create({
   baseURL: "https://ap-vodiy-parfum-backend.up.railway.app/api/v1/",
-  headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+  headers: {
+    Authorization: `Bearer ${
+      typeof window !== "undefined"
+        ? window?.localStorage.getItem("token")
+        : null
+    }`,
+  },
 });
 
 export default request;

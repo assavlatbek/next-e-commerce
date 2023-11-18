@@ -1,4 +1,3 @@
-// store.ts
 import create, { SetState } from "zustand";
 
 export interface Product {
@@ -34,22 +33,31 @@ interface Store {
   toggleFavorite: (product: Product) => void;
 }
 
-export const useFavouritesStore = create<Store>((set: SetState<Store>) => ({
-  favorites: JSON.parse(localStorage.getItem("favorites") || "[]"),
-  toggleFavorite: (product) =>
-    set((state) => {
-      const isFavorite = state.favorites.some((p) => p._id === product._id);
+export const useFavouritesStore = create<Store>((set: SetState<Store>) => {
+  const initialFavorites: Product[] =
+    typeof window !== "undefined" && localStorage.getItem("favorites")
+      ? JSON.parse(localStorage.getItem("favorites") || "[]")
+      : [];
 
-      if (isFavorite) {
-        const updatedFavorites = state.favorites.filter(
-          (p) => p._id !== product._id
-        );
-        localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-        return { favorites: updatedFavorites };
-      } else {
-        const updatedFavorites = [...state.favorites, product];
-        localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-        return { favorites: updatedFavorites };
-      }
-    }),
-}));
+  return {
+    favorites: initialFavorites,
+    toggleFavorite: (product) =>
+      set((state) => {
+        const isFavorite = state.favorites.some((p) => p._id === product._id);
+
+        if (typeof window !== "undefined" && isFavorite) {
+          const updatedFavorites = state.favorites.filter(
+            (p) => p._id !== product._id
+          );
+          localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+          return { favorites: updatedFavorites };
+        } else if (typeof window !== "undefined") {
+          const updatedFavorites = [...state.favorites, product];
+          localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+          return { favorites: updatedFavorites };
+        }
+
+        return state;
+      }),
+  };
+});

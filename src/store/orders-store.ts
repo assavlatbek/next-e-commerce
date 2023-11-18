@@ -1,67 +1,65 @@
-// store.ts
-import create, { SetState, State } from "zustand";
+// orders-store.ts
+import create from "zustand";
 
-export interface Product {
-  checked: boolean;
-  sold: number;
-  _id: string;
-  title: string;
+interface Product {
+  name: string;
   price: number;
-  description: string;
-  image: {
-    public_id?: string;
-    url: string;
-  };
   quantity: number;
-  category: {
-    _id: string;
-    name: string;
-    image: {
-      public_id: string;
-      url: string;
-    };
-    createdAt: string;
-    updatedAt: string;
-    __v: number;
-  };
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
 }
 
-interface Store extends State {
-  favorites: Product[];
-  toggleFavorite: (product: Product) => void;
-  persistFavorites: () => void;
+interface OrdersStore {
+  data: Record<string, Product>;
+  addToCart: (productId: string) => void;
+  removeFromCart: (productId: string) => void;
 }
 
-export const useFavouritesStore = create<Store>((set: SetState<Store>) => ({
-  favorites: [],
-  toggleFavorite: (product) =>
+const isClient = typeof window !== "undefined";
+
+const getClientStorage = () => {
+  return isClient ? JSON.parse(localStorage.getItem("cart") || "{}") : {};
+};
+
+const setStorage = (data: Record<string, Product>) => {
+  if (isClient) {
+    localStorage.setItem("cart", JSON.stringify(data));
+  }
+};
+
+const useOrdersStore = create<OrdersStore>((set) => ({
+  data: getClientStorage(),
+  addToCart: (productId) =>
     set((state) => {
-      const isFavorite = state.favorites.some((p) => p._id === product._id);
-
-      if (isFavorite) {
-        const updatedFavorites = state.favorites.filter(
-          (p) => p._id !== product._id
-        );
-        set({ favorites: updatedFavorites });
-      } else {
-        const updatedFavorites = [...state.favorites, product];
-        set({ favorites: updatedFavorites });
-      }
+      const newData = {
+        ...state.data,
+        [productId]: {
+          ...state.data[productId],
+          quantity: (state.data[productId]?.quantity || 0) + 1,
+        },
+      };
+      setStorage(newData);
+      return { data: newData };
     }),
-  persistFavorites: () => {
-    try {
-      const favorites = get().favorites;
-      localStorage.setItem("favorites", JSON.stringify(favorites));
-    } catch (error) {
-      console.error("Error persisting favorites to localStorage:", error);
-    }
-  },
+  removeFromCart: (productId) =>
+    set((state) => {
+      const newQuantity = Math.max(
+        (state.data[productId]?.quantity || 0) - 1,
+        0
+      );
+      const newData = {
+        ...state.data,
+        [productId]: {
+          ...state.data[productId],
+          quantity: newQuantity,
+        },
+      };
+
+      if (newQuantity === 0) {
+        delete newData[productId];
+      }
+
+      setStorage(newData);
+      return { data: newData };
+    }),
 }));
 
-useFavouritesStore.subscribe(
-  (state) => state.persistFavorites,
-  (persistFavorites) => persistFavorites()
-);
+export default useOrdersStore;

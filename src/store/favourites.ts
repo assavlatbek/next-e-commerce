@@ -50,7 +50,7 @@ export const useFavouritesStore = create<Store>((set: SetState<Store>) => {
             (p) => p._id !== product._id
           );
           typeof window !== "undefined"
-            ? window?.localStorage.setItem(
+            ? window.localStorage.setItem(
                 "favorites",
                 JSON.stringify(updatedFavorites)
               )
@@ -59,7 +59,7 @@ export const useFavouritesStore = create<Store>((set: SetState<Store>) => {
         } else if (typeof window !== "undefined") {
           const updatedFavorites = [...state.favorites, product];
           typeof window !== "undefined"
-            ? window?.localStorage.setItem(
+            ? window.localStorage.setItem(
                 "favorites",
                 JSON.stringify(updatedFavorites)
               )

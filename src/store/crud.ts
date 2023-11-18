@@ -2,7 +2,6 @@ import request from "@/server";
 import React from "react";
 
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
 import { devtools } from "zustand/middleware";
 
 const crud = <T>(url: string) => {
@@ -24,107 +23,105 @@ const crud = <T>(url: string) => {
   }
   return create<DataState>()(
     devtools(
-      persist(
-        (set, get) => {
-          const setState = (obj: object) => {
-            set((state) => ({ ...state, ...obj }));
-          };
+      (set, get) => {
+        const setState = (obj: object) => {
+          set((state) => ({ ...state, ...obj }));
+        };
 
-          console.log(get());
+        console.log(get());
 
-          return {
-            search: "",
-            total: 0,
-            loading: false,
-            data: [],
-            selected: null,
-            isModalLoading: false,
-            isModalOpen: false,
-            getData: async () => {
-              try {
-                const { search } = get();
-                const params = { search };
+        return {
+          search: "",
+          total: 0,
+          loading: false,
+          data: [],
+          selected: null,
+          isModalLoading: false,
+          isModalOpen: false,
+          getData: async () => {
+            try {
+              const { search } = get();
+              const params = { search };
 
-                setState({ loading: true });
-                const { data } = await request.get<T[]>(url, {
-                  params,
-                });
+              setState({ loading: true });
+              const { data } = await request.get<T[]>(url, {
+                params,
+              });
 
-                setState({
-                  data: data,
-                  total: data.length,
-                });
-              } finally {
-                setState({ loading: false });
-              }
-            },
-            handleSearch: (e) => {
-              setState({ search: e.target.value });
+              setState({
+                data: data,
+                total: data.length,
+              });
+            } finally {
+              setState({ loading: false });
+            }
+          },
+          handleSearch: (e) => {
+            setState({ search: e.target.value });
+            get().getData();
+          },
+          showModal: (form) => {
+            set((state) => ({ ...state, isModalOpen: true, selected: null }));
+            form.resetFields();
+          },
+          editData: async (form, id) => {
+            try {
+              set((state) => ({
+                ...state,
+                selected: id,
+                loading: true,
+                isModalOpen: true,
+              }));
+              const { data } = await request.get(`${url}/${id}`);
+              form.setFieldsValue(data);
+            } finally {
+              set((state) => ({ ...state, selected: id, loading: false }));
+            }
+          },
+          deleteData: async (id) => {
+            try {
+              set((state) => ({
+                ...state,
+                loading: true,
+              }));
+              await request.delete(`${url}/${id}`);
               get().getData();
-            },
-            showModal: (form) => {
-              set((state) => ({ ...state, isModalOpen: true, selected: null }));
-              form.resetFields();
-            },
-            editData: async (form, id) => {
-              try {
-                set((state) => ({
-                  ...state,
-                  selected: id,
-                  loading: true,
-                  isModalOpen: true,
-                }));
-                const { data } = await request.get(`${url}/${id}`);
-                form.setFieldsValue(data);
-              } finally {
-                set((state) => ({ ...state, selected: id, loading: false }));
-              }
-            },
-            deleteData: async (id) => {
-              try {
-                set((state) => ({
-                  ...state,
-                  loading: true,
-                }));
-                await request.delete(`${url}/${id}`);
-                get().getData();
-              } finally {
-                set((state) => ({
-                  ...state,
-                  loading: false,
-                }));
-              }
-            },
-            handleOk: async (form) => {
-              try {
-                const { selected } = get();
-                const values = await form.validateFields();
+            } finally {
+              set((state) => ({
+                ...state,
+                loading: false,
+              }));
+            }
+          },
+          handleOk: async (form) => {
+            try {
+              const { selected } = get();
+              const values = await form.validateFields();
 
-                set((state) => ({
-                  ...state,
-                  isModalLoading: true,
-                }));
+              set((state) => ({
+                ...state,
+                isModalLoading: true,
+              }));
 
-                if (selected === null) {
-                  await request.post(`${url}`, values);
-                } else {
-                  await request.put(`${url}/${selected}`, values);
-                }
-
-                set((state) => ({ ...state, isModalOpen: false }));
-                get().getData();
-                form.resetFields();
-              } finally {
-                set((state) => ({ ...state, isModalLoading: false }));
+              if (selected === null) {
+                await request.post(`${url}`, values);
+              } else {
+                await request.put(`${url}/${selected}`, values);
               }
-            },
-            closeModal: () => {
+
               set((state) => ({ ...state, isModalOpen: false }));
-            },
-          };
-        },
-        { name: "data" }
-      )
+              get().getData();
+              form.resetFields();
+            } finally {
+              set((state) => ({ ...state, isModalLoading: false }));
+            }
+          },
+          closeModal: () => {
+            set((state) => ({ ...state, isModalOpen: false }));
+          },
+        };
+      },
+      { name: "data" }
     )
   );
 };

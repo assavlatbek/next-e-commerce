@@ -7,7 +7,8 @@ interface AuthState {
   setIsAuthenticated: (user: User) => void;
 }
 
-const userJson = window.localStorage.getItem("user");
+const userJson =
+  typeof window !== "undefined" ? window.localStorage.getItem("user") : null;
 
 const user = userJson ? JSON.parse(userJson) : null;
 

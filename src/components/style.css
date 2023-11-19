@@ -244,6 +244,23 @@
   opacity: 0;
   pointer-events: none;
 }
+
+.reolad {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #40ff00;
+  color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  bottom: 20px;
+  right: 40px;
+}
+
+.reolad > img {
+  filter: invert(100%);
+}
 @media (max-width: 1180px) {
   .home-card .card-action {
     display: block !important;

@@ -5,6 +5,8 @@ import AllProductsCard from "@/components/cards/all-products";
 import { Product } from "@/store/favourites";
 
 import "./style.css";
+import LastProductsList from "./last-products";
+import Reload from "@/components/reload/Reload";
 
 const FavoritesPage: React.FC = () => {
   const [favoriteProducts, setFavoriteProducts] = useState<Product[]>([]);
@@ -18,15 +20,24 @@ const FavoritesPage: React.FC = () => {
     console.log(favoritesFromLocalStorage);
   }, []);
   return (
-    <div className="all-products-row">
+    <>
       {!favoriteProducts.length ? (
-        <p>No favorites yet.</p>
+        <div className="w-100">
+          <p>No favorites yet.</p>
+          <br />
+          <div>
+            <LastProductsList />
+          </div>
+        </div>
       ) : (
-        favoriteProducts.map((product) => (
-          <AllProductsCard key={Date.now()} {...product} />
-        ))
+        <div className="all-products-row">
+          {favoriteProducts.map((product) => (
+            <AllProductsCard key={Date.now()} {...product} />
+          ))}
+        </div>
       )}
-    </div>
+      <Reload />
+    </>
   );
 };
 

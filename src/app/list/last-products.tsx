@@ -1,6 +1,7 @@
 "use client";
 
 import LastProductCard from "@/components/cards/last-products";
+import Reload from "@/components/reload/Reload";
 import useLastProduct from "@/store/last-produts";
 import React, { useEffect } from "react";
 import Carousel from "react-multi-carousel";
@@ -31,7 +32,7 @@ const LastProductsList = () => {
   };
 
   return (
-    <section className="container">
+    <section>
       {loading ? (
         "Loading..."
       ) : (
@@ -48,6 +49,7 @@ const LastProductsList = () => {
           ))}
         </Carousel>
       )}
+      <Reload />
     </section>
   );
 };

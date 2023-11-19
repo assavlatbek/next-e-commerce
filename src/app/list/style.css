@@ -12,6 +12,10 @@
   border-radius: 10px;
 }
 
+.w-100 {
+  width: 100%;
+}
+
 .all-products-row .product-card-image-container img {
   object-fit: cover;
   width: 100%;

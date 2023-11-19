@@ -60,6 +60,8 @@ const LastProductCard = ({
       updatedAt: "",
       __v: 0,
     });
+
+    toast.error("You must click reload button for view changes");
   };
 
   const handleAddToCart = () => {
@@ -86,59 +88,68 @@ const LastProductCard = ({
   };
 
   return (
-    <div className="home-card">
-      <center className="product-card-image-container">
-        <Image
-          width={300}
-          height={300}
-          src={
-            image?.url
-              ? image?.url
-              : "https://mobilecity-live.s3.ap-southeast-2.amazonaws.com/wp-content/uploads/2021/01/01010454/W13-6-600x450.jpg"
-          }
-          alt="image"
-        />
-      </center>
-      <div className="home-card-body">
-        <h3 className="product-name">{title ? title : "Iphone"}</h3>
-        <hr />
-        <div className="card-row">
-          <p>{description ? description : "hello"}</p>
-        </div>
-        <div className="card-row">
-          <p>
-            <b>sold:</b> <span className="text-green">{sold ? sold : 0}</span>
-          </p>
-          <p>
-            <b>quantity:</b>{" "}
-            <span className="text-green">{quantity ? quantity : 0}</span>
-          </p>
-        </div>
+    <>
+      <div className="home-card">
+        <center className="product-card-image-container">
+          <Image
+            width={300}
+            height={300}
+            src={
+              image?.url
+                ? image?.url
+                : "https://mobilecity-live.s3.ap-southeast-2.amazonaws.com/wp-content/uploads/2021/01/01010454/W13-6-600x450.jpg"
+            }
+            alt="image"
+          />
+        </center>
+        <div className="home-card-body">
+          <h3 className="product-name">{title ? title : "Iphone"}</h3>
+          <hr />
+          <div className="card-row">
+            <p>{description ? description : "hello"}</p>
+          </div>
+          <div className="card-row">
+            <p>
+              <b>sold:</b> <span className="text-green">{sold ? sold : 0}</span>
+            </p>
+            <p>
+              <b>quantity:</b>{" "}
+              <span className="text-green">{quantity ? quantity : 0}</span>
+            </p>
+          </div>
 
-        <p>
-          <b>Price: </b> <span className="text-green">{formattedPrice}USZ</span>
-        </p>
-      </div>
-      <div className="card-action">
-        {cartQuantity > 0 ? (
-          <>
-            <button className="add-by-button">
-              <span className="minus-button" onClick={handleDecreaseQuantity}>
-                -
-              </span>
-              <span>{cartQuantity}</span>
-              <span className="plus-button" onClick={handleIncreaseQuantity}>
-                +
-              </span>
+          <p>
+            <b>Price: </b>{" "}
+            <span className="text-green">{formattedPrice}USZ</span>
+          </p>
+        </div>
+        <button
+          className={`favorite-button ${isFavorite ? "favorited" : ""}`}
+          onClick={handleToggleFavorite}
+        >
+          {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
+        </button>
+        <div className="card-action">
+          {cartQuantity > 0 ? (
+            <>
+              <button className="add-by-button">
+                <span className="minus-button" onClick={handleDecreaseQuantity}>
+                  -
+                </span>
+                <span>{cartQuantity}</span>
+                <span className="plus-button" onClick={handleIncreaseQuantity}>
+                  +
+                </span>
+              </button>
+            </>
+          ) : (
+            <button className="add-button" onClick={handleAddToCart}>
+              Add to Cart - {formattedPrice}USZ
             </button>
-          </>
-        ) : (
-          <button className="add-button" onClick={handleAddToCart}>
-            Add to Cart - {formattedPrice}USZ
-          </button>
-        )}
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

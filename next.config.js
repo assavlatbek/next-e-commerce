@@ -9,6 +9,7 @@ const nextConfig = {
       "images.remotePatterns",
       "images.pexels.com",
       "media.tenor.com",
+      "cdn.icon-icons.com",
     ],
   },
 };

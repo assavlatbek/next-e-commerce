@@ -8,6 +8,7 @@ import { Pagination } from "@mui/material";
 import { LIMIT } from "@/constants";
 import AllProductsCard from "@/components/cards/all-products";
 import { AllProductsType } from "@/types/all-products";
+import Reload from "@/components/reload/Reload";
 
 interface Types {
   limit: number;
@@ -121,6 +122,7 @@ const AllproductsList = () => {
         ) : null}
       </div>
       <br />
+      <Reload />
     </>
   );
 };

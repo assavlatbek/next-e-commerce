@@ -6,7 +6,7 @@ import Image from "next/image";
 
 const AllCategoriesCard = ({ image, _id, name }: AllproductsType) => {
   return (
-    <Link className="categories" href={`/categories/${_id}`}>
+    <Link className="categories" href={`#`}>
       <div className="categories-image">
         <Image width={200} height={200} src={image?.url} alt="image" />
       </div>
